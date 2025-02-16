@@ -114,7 +114,7 @@ def get_target(words: List[str], idx: int, window_size: int = 5) -> List[str]:
 
 def get_batches(
     words: List[int], batch_size: int, window_size: int = 5
-) -> Generator[Tuple[List[int], List[int]]]:
+) -> Generator[Tuple[List[int], List[int]], None, None]:
     """Generate batches of word pairs for training.
 
     This function creates a generator that yields tuples of (inputs, targets),
