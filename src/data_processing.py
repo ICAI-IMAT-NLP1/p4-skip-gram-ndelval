@@ -77,13 +77,13 @@ def subsample_words(
     # Convert words to integers
     int_words: List[int] = [vocab_to_int[word] for word in words]
 
-    freqs: Dict[str, float] = {
+    freqs: Dict[int, float] = {
         word_int: count / len(words) for word_int, count in Counter(int_words).items()
     }
     prob: Dict[int, float] = {
-        word_int: 1 - (threshold / freqs[word_int]) for word_int in freqs
+        word_int: 1 - (threshold / freqs[word_int]) ** 0.5 for word_int in freqs
     }
-    train_words: List[str] = [
+    train_words: List[int] = [
         word_int for word_int in int_words if prob[word_int] < torch.rand(1).item()
     ]
 
